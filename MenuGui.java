@@ -15,16 +15,26 @@ public class MenuGui extends JFrame implements ActionListener{
     pane = this.getContentPane();
     pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
     this.setTitle("Sudoku Menu");
+<<<<<<< HEAD
     this.setSize(550,350);
     this.setLocation(0,0);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     start = new JButton("Play");
     sudoku = new JLabel("Sudoku");
     seed = new JLabel("Seed(Optional):");
+=======
+    this.setSize(500,350);
+    this.setLocation(0,0);
+    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    start = new JButton("Start");
+    sudoku = new JLabel("Sudoku");
+    seed = new JLabel("Seed(Optional)");
+>>>>>>> master
     difficultyMenu = new JComboBox<>(difficultyList);
     difficultyLabel = new JLabel("Difficulty:");
     seedNumber = new JTextField(6);
     //editing fields
+<<<<<<< HEAD
     sudoku.setFont(new Font("Serif Bold", Font.PLAIN, 40));
     difficultyLabel.setFont(new Font("Serif",Font.PLAIN, 20));
     seed.setFont(new Font("Serif",Font.PLAIN, 20));
@@ -37,6 +47,13 @@ public class MenuGui extends JFrame implements ActionListener{
     start.setMinimumSize(new Dimension(140,40));
     start.setPreferredSize(new Dimension(140,40));
     start.setMaximumSize(new Dimension(140,40));
+=======
+    sudoku.setFont(new Font("Serif Bold", Font.PLAIN, 32));
+    seedNumber.setMinimumSize(new Dimension(6,1));
+    seedNumber.setPreferredSize(new Dimension(6,1));
+    seedNumber.setMaximumSize(new Dimension(Short.MAX_VALUE, Short.MAX_VALUE));
+    sudoku.setAlignmentX(Component.CENTER_ALIGNMENT);
+>>>>>>> master
     //adding fields to the pane
     pane.add(sudoku);
     pane.add(difficultyLabel);
