@@ -10,11 +10,12 @@ public class MenuGui extends JFrame implements ActionListener{
   private JTextField seedNumber;
   private Container pane;
   public MenuGui(){
+    //initizalizing fields and window settings
     String[] difficultyList = {"Easy","Medium","Hard"};
     pane = this.getContentPane();
-    pane.setLayout(new BoxLayout(pane, BoxLayout.PAGE_AXIS)); //temporary
+    pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
     this.setTitle("Sudoku Menu");
-    this.setSize(800,600);
+    this.setSize(500,350);
     this.setLocation(0,0);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     start = new JButton("Start");
@@ -22,7 +23,14 @@ public class MenuGui extends JFrame implements ActionListener{
     seed = new JLabel("Seed(Optional)");
     difficultyMenu = new JComboBox<>(difficultyList);
     difficultyLabel = new JLabel("Difficulty:");
-    seedNumber = new JTextField(8);
+    seedNumber = new JTextField(6);
+    //editing fields
+    sudoku.setFont(new Font("Serif Bold", Font.PLAIN, 32));
+    seedNumber.setMinimumSize(new Dimension(6,1));
+    seedNumber.setPreferredSize(new Dimension(6,1));
+    seedNumber.setMaximumSize(new Dimension(Short.MAX_VALUE, Short.MAX_VALUE));
+    sudoku.setAlignmentX(Component.CENTER_ALIGNMENT);
+    //adding fields to the pane
     pane.add(sudoku);
     pane.add(difficultyLabel);
     pane.add(difficultyMenu);
