@@ -44,9 +44,6 @@ public class MenuGui extends JFrame implements ActionListener{
     start.setPreferredSize(new Dimension(140,40));
     start.setMaximumSize(new Dimension(140,40));
     sudoku.setFont(new Font("Serif Bold", Font.PLAIN, 32));
-    seedNumber.setMinimumSize(new Dimension(6,1));
-    seedNumber.setPreferredSize(new Dimension(6,1));
-    seedNumber.setMaximumSize(new Dimension(Short.MAX_VALUE, Short.MAX_VALUE));
     sudoku.setAlignmentX(Component.CENTER_ALIGNMENT);
     //adding fields to the pane
     pane.add(sudoku);
