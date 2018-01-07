@@ -13,7 +13,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     private JButton reset;
     private Container pane;
     public puzzleGUI(){
-	pane = this. getContentPane;
+	pane = this.getContentPane();
 	pane.setLayout(new FlowLayout());
 	this.setTitle("Sudoku");
 	this.setSize(900, 800);
