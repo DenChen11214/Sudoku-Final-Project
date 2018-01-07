@@ -30,6 +30,7 @@ public class MenuGui extends JFrame implements ActionListener{
     difficultyMenu = new JComboBox<>(difficultyList);
     difficultyLabel = new JLabel("Difficulty:");
     seedNumber = new JTextField(6);
+    
     //editing fields
     sudoku.setFont(new Font("Serif Bold", Font.PLAIN, 40));
     difficultyLabel.setFont(new Font("Serif",Font.PLAIN, 20));
@@ -43,14 +44,24 @@ public class MenuGui extends JFrame implements ActionListener{
     start.setMinimumSize(new Dimension(140,40));
     start.setPreferredSize(new Dimension(140,40));
     start.setMaximumSize(new Dimension(140,40));
-    sudoku.setFont(new Font("Serif Bold", Font.PLAIN, 32));
     sudoku.setAlignmentX(Component.CENTER_ALIGNMENT);
+    start.setAlignmentX(Component.CENTER_ALIGNMENT);
+    difficultyMenu.setAlignmentX(Component.CENTER_ALIGNMENT);
+    difficultyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    seedNumber.setAlignmentX(Component.CENTER_ALIGNMENT);
+    seed.setAlignmentX(Component.CENTER_ALIGNMENT);
+    
     //adding fields to the pane
     pane.add(sudoku);
+    pane.add(Box.createRigidArea(new Dimension(0,30)));
     pane.add(difficultyLabel);
+    pane.add(Box.createRigidArea(new Dimension(0,10)));
     pane.add(difficultyMenu);
+    pane.add(Box.createRigidArea(new Dimension(0,20)));
     pane.add(seed);
+    pane.add(Box.createRigidArea(new Dimension(0,10)));
     pane.add(seedNumber);
+    pane.add(Box.createRigidArea(new Dimension(0,50)));
     pane.add(start);
   }
   public void actionPerformed(ActionEvent e){
