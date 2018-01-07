@@ -1,10 +1,10 @@
 import java.awt.*;
-import java.swing.*;
+import javax.swing.*;
 import java.awt.event.*;
-public class puzzleGUI{
+public class puzzleGUI extends JFrame implements ActionListener{
     private JLabel seed;
     private JTextField seedNumber;
-    private JTextField[][] puzzle = new JTextButton[9][9];
+    private JTextField[][] puzzle = new JTextField[9][9];
     private JTextField checkText;
     private JButton hint;
     private JButton check;
@@ -18,7 +18,7 @@ public class puzzleGUI{
 	this.setTitle("Sudoku");
 	this.setSize(900, 800);
 	this.setLocation(0,0);
-	this.setDeafultCloseOperation(EXIT_ON_CLOSE);
+	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	seed = new JLabel("Seed:");
 	seedNumber = new JTextField("seedNumber");
 	checkText = new JTextField("checkText");
@@ -29,13 +29,19 @@ public class puzzleGUI{
 	reset = new JButton("reset");
 	pane.add(seed);
 	pane.add(seedNumber);
-	pane.add(puzzle);
+	for (int i=0;i<9;i++){
+		for (int ii=0; ii<9; ii++){
+			pane.add(puzzle[i][ii]);
+		}
+	}
 	pane.add(checkText);
 	pane.add(hint);
 	pane.add(check);
 	pane.add(solution);
 	pane.add(backToMenu);
 	pane.add(reset);
+    }
+    public void actionPerformed(ActionEvent e){
     }
 }
 	
