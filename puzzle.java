@@ -7,9 +7,10 @@ public class puzzle{
     }
     public puzzle(int randSeed){
 	this();
-	randgen = new Random(randSeed);
+	randgen.setSeed(randSeed);
     }
     public void generateFull(){
+	
     }
 }
     
