@@ -21,11 +21,11 @@ public class solveSudoku{
 	}
   //checks whether or not a certain number is already in the box
   //the box number goes horizontally to the next row
-  public static int boxSafe(int box, int num){
+  public boolean boxSafe(int box, int num){
     int boxRow = 0;
     int boxCol = 0;
     for(int i = box; i >0 ;i -= 3){
-      boxRow++;
+      boxRow ++;
       if(i <= 0){
         i = 0;
       }
@@ -36,17 +36,19 @@ public class solveSudoku{
     for(int i = box; i > 0;i-=3){
       boxCol = i;
     }
-    return boxCol;
+    boxRow = 1 + (boxRow - 1) * 3;
+    boxCol = 1 + (boxCol - 1) * 3;
+    for(int r = boxRow; r <= boxRow + 2;r++){
+      for(int c = boxCol;c <= boxCol + 2;c++ ){
+        if(grid[r][c] == num ){
+          return false;
+        }
+      }
+    }
+    return true;
   }
   public static void main(String[] args){
-    System.out.println(boxSafe(1,0));
-    System.out.println(boxSafe(2,0));
-    System.out.println(boxSafe(3,0));
-    System.out.println(boxSafe(4,0));
-    System.out.println(boxSafe(5,0));
-    System.out.println(boxSafe(6,0));
-    System.out.println(boxSafe(7,0));
-    System.out.println(boxSafe(8,0));
-    System.out.println(boxSafe(9,0));
+    grid = new int[9][9];
+    System.out.println(this.boxSafe(1,4));
   }
 }
