@@ -17,7 +17,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
 	pane = this.getContentPane();
 	pane.setLayout(new FlowLayout());
 	this.setTitle("Sudoku");
-	this.setSize(900, 800);
+	this.setSize(900,300);
 	this.setLocation(0,0);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	seed = new JLabel("Seed:");
