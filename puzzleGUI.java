@@ -31,7 +31,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
 	reset = new JButton("reset");
 	for (int i=0;i<9;i++){
 		for (int ii=0; ii<9; ii++){
-			puzzle[i][ii]=new JTextField(8);
+			puzzle[i][ii]=new JTextField("" + someFileName.getArray(i,ii),1);
 			pane.add(puzzle[i][ii]);
 		}
 	}
