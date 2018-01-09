@@ -48,7 +48,6 @@ public class solveSudoku{
     return true;
   }
   public static void main(String[] args){
-    grid = new int[9][9];
-    System.out.println(this.boxSafe(1,4));
+
   }
 }
