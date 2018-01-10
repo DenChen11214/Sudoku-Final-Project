@@ -1,6 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.*;
 public class puzzleGUI extends JFrame implements ActionListener{
   private JLabel seed;
   private JTextField seedNumber;
@@ -24,7 +25,8 @@ public class puzzleGUI extends JFrame implements ActionListener{
     seed = new JLabel("Seed:");
     result = new JLabel("Result:");
     seedNumber = new JTextField(10);
-    checkText = new JTextField(6);
+    checkText = new JTextField(20);
+    checkText.setEditable(false);
     hint = new JButton("hint");
     check = new JButton("check");
     solution = new JButton("solution");
@@ -85,6 +87,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
       }
     }
   }
+  //resets the non-given values to blanks
   public void resetBoard(){
     for (int i=0;i<9;i++){
 	    for (int ii=0; ii<9; ii++){
@@ -94,6 +97,19 @@ public class puzzleGUI extends JFrame implements ActionListener{
       }
     }
   }
+  //checks if the current board matches the solution
+  public boolean checkBoard(){
+    readPuzzle solution = new readPuzzle();
+    String[][] solutionGrid = solution.getSolution();
+    for (int i=0;i<9;i++){
+	    for (int ii=0; ii<9; ii++){
+        if(!puzzle[i][ii].getText().equals(solutionGrid[i][ii])){
+          return false;
+        }
+      }
+    }
+    return true;
+  }
   public void actionPerformed(ActionEvent e){
     String s = e.getActionCommand();
     if(s.equals("solution")){
@@ -101,6 +117,14 @@ public class puzzleGUI extends JFrame implements ActionListener{
     }
     if(s.equals("reset")){
       resetBoard();
+    }
+    if(s.equals("check")){
+      if(checkBoard()){
+        checkText.setText("You Win!");
+      }
+      else{
+        checkText.setText("Something's Wrong...");
+      }
     }
   }
   public static void main(String[] args) {
