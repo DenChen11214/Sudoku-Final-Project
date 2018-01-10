@@ -65,15 +65,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     pane.add(seed);
     pane.add(seedNumber);
   }
-  public void showSolution(){
-    readPuzzle solution = new readPuzzle();
-    String[][] solutionGrid = solution.getSolution();
-    for (int i=0;i<9;i++){
-	    for (int ii=0; ii<9; ii++){
-        puzzle[i][ii].setText(solutionGrid[i][ii]);
-      }
-    }
-  }
+  //returns a String[][] of the field puzzle
   public String[][] getPuzzle(){
     String[][] puz = new String[9][9];
     for(int i = 0; i < puzzle.length;i++){
@@ -83,10 +75,32 @@ public class puzzleGUI extends JFrame implements ActionListener{
     }
     return puz;
   }
+  //sets textfields to that of the solution
+  public void showSolution(){
+    readPuzzle solution = new readPuzzle();
+    String[][] solutionGrid = solution.getSolution();
+    for (int i=0;i<9;i++){
+	    for (int ii=0; ii<9; ii++){
+        puzzle[i][ii].setText(solutionGrid[i][ii]);
+      }
+    }
+  }
+  public void resetBoard(){
+    for (int i=0;i<9;i++){
+	    for (int ii=0; ii<9; ii++){
+        if(puzzle[i][ii].isEditable()){
+          puzzle[i][ii].setText(" ");
+        }
+      }
+    }
+  }
   public void actionPerformed(ActionEvent e){
     String s = e.getActionCommand();
     if(s.equals("solution")){
       showSolution();
+    }
+    if(s.equals("reset")){
+      resetBoard();
     }
   }
   public static void main(String[] args) {
