@@ -17,7 +17,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
 	pane = this.getContentPane();
 	pane.setLayout(new FlowLayout());
 	this.setTitle("Sudoku");
-	this.setSize(900,300);
+	this.setSize(300,400);
 	this.setLocation(0,0);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	seed = new JLabel("Seed:");
@@ -29,18 +29,22 @@ public class puzzleGUI extends JFrame implements ActionListener{
 	solution = new JButton("solution");
 	backToMenu = new JButton("backToMenu");
 	reset = new JButton("reset");
+	readPuzzle read = new readPuzzle();
+	String[][] grid = read.getPuzzle();
 	for (int i=0;i<9;i++){
-		for (int ii=0; ii<9; ii++){
-      if(someFileName.getArray(i,ii) != 0){
-        puzzle[i][ii]=new JTextField("" + someFileName.getArray(i,ii),1);
-        puzzle[i][ii].setEditable(false);
-        pane.add(puzzle[i][ii]);
-      }
-      else{
-        puzzle[i][ii] = new JTextField(1);
-      }
-      
+	    for (int ii=0; ii<9; ii++){
+		if(!grid[i][ii].equals("0")){
+		    puzzle[i][ii]=new JTextField(grid[i][ii],2);
+		    puzzle[i][ii].setEditable(false);
+		    pane.add(puzzle[i][ii]);
 		}
+		else{
+		    puzzle[i][ii] = new JTextField(2);
+		    puzzle[i][ii].setEditable(true);
+		    pane.add(puzzle[i][ii]);
+		}
+      
+	    }
 	}
 	pane.add(result);
 	pane.add(checkText);
@@ -55,8 +59,8 @@ public class puzzleGUI extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
     }
     public static void main(String[] args) {
-    puzzleGUI m = new puzzleGUI();
-    m.setVisible(true);
+	puzzleGUI m = new puzzleGUI();
+	m.setVisible(true);
 
     }
 }
