@@ -12,7 +12,7 @@ public class readPuzzle{
     public readPuzzle(){
     	try{
 	    File f = new File(filename);//can combine
-	    Scanner in = new Scanner(f).useDelimiter(",").useDelimiter("\n");//into one line
+	    Scanner in = new Scanner(f).useDelimiter(",");//into one line
 	    	for (int i=0;i<9;i++){
 		    for (int ii=0;ii<9;ii++){
 			if (in.hasNext()){
@@ -26,7 +26,7 @@ public class readPuzzle{
 	}
 	try{
 	    File f = new File(solutionFile);//can combine
-	    Scanner in = new Scanner(f).useDelimiter(",").useDelimiter("\n");//into one line
+	    Scanner in = new Scanner(f).useDelimiter(",");//into one line
 	    	for (int i=0;i<9;i++){
 		    for (int ii=0;ii<9;ii++){
 			if (in.hasNext()){

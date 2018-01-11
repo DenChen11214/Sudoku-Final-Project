@@ -14,7 +14,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     private JButton reset;
     private Container pane;
     private JLabel result;
-    private readPuzzle puz;
+    private String[][] puz;
     public puzzleGUI(){
 	//setting fields up
 	pane = this.getContentPane();
@@ -33,7 +33,8 @@ public class puzzleGUI extends JFrame implements ActionListener{
 	solution = new JButton("solution");
 	backToMenu = new JButton("backToMenu");
 	reset = new JButton("reset");
-	puz = new readPuzzle();
+	readPuzzle puzzl = new readPuzzle();
+	puz = puzzl.getSolution();
 	//putting values of a sudoku puzzle into the textfields
 	String[][] grid = puz.getPuzzle();
 	for (int i=0;i<9;i++){
