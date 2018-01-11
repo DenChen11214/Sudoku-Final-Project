@@ -2,8 +2,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.Random;
-public class readPuzzle(){
-    public readPuzzle{
+public class readPuzzle{
+  public readPuzzle(){
     private String[][] puzzle =new String[9][9];
     private String[][] solution = new String[9][9];
     private Random randgen = new Random();
