@@ -24,7 +24,6 @@ public class MenuGui extends JFrame implements ActionListener{
     this.setSize(500,350);
     this.setLocation(0,0);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-    start = new JButton("Start");
     sudoku = new JLabel("Sudoku");
     seed = new JLabel("Seed(Optional)");
     difficultyMenu = new JComboBox<>(difficultyList);
@@ -50,6 +49,7 @@ public class MenuGui extends JFrame implements ActionListener{
     difficultyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
     seedNumber.setAlignmentX(Component.CENTER_ALIGNMENT);
     seed.setAlignmentX(Component.CENTER_ALIGNMENT);
+    start.addActionListener(this);
     
     //adding fields to the pane
     pane.add(sudoku);
@@ -65,7 +65,12 @@ public class MenuGui extends JFrame implements ActionListener{
     pane.add(start);
   }
   public void actionPerformed(ActionEvent e){
-	
+      String s = e.getActionCommand();
+      if(s.equals("Play")){
+	  puzzleGUI p = new puzzleGUI();
+	  p.setVisible(true);
+      }
+      
   }
   public static void main(String[] args){
     MenuGui m = new MenuGui();
