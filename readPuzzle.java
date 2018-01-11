@@ -3,10 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.Random;
 public class readPuzzle{
-<<<<<<< HEAD
-    int[][] solution = new int[9][9];
     public readPuzzle{
-=======
     private String[][] puzzle =new String[9][9];
     private String[][] solution = new String[9][9];
     private Random randgen = new Random();
@@ -74,7 +71,6 @@ public class readPuzzle{
 	public static void main(String[] args){
 	    readPuzzle a = new readPuzzle();
 	    System.out.println(a);
->>>>>>> generatePuzzle
     }
 }
 	
