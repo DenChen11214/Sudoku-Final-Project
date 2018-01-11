@@ -14,6 +14,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
   private JButton reset;
   private Container pane;
   private JLabel result;
+  private readPuzzle puz;
   public puzzleGUI(){
     //setting fields up
     pane = this.getContentPane();
@@ -33,8 +34,8 @@ public class puzzleGUI extends JFrame implements ActionListener{
     backToMenu = new JButton("backToMenu");
     reset = new JButton("reset");
     //putting values of a sudoku puzzle into the textfields
-    readPuzzle read = new readPuzzle();
-    String[][] grid = read.getPuzzle();
+    puz = new readPuzzle();
+    String[][] grid = puz.getPuzzle();
     for (int i=0;i<9;i++){
 	    for (int ii=0; ii<9; ii++){
         if(!grid[i][ii].equals("0")){
@@ -79,8 +80,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
   }
   //sets textfields to that of the solution
   public void showSolution(){
-    readPuzzle solution = new readPuzzle();
-    String[][] solutionGrid = solution.getSolution();
+    String[][] solutionGrid = puz.getSolution();
     for (int i=0;i<9;i++){
 	    for (int ii=0; ii<9; ii++){
         puzzle[i][ii].setText(solutionGrid[i][ii]);
@@ -99,13 +99,16 @@ public class puzzleGUI extends JFrame implements ActionListener{
   }
   //checks if the current board matches the solution
   public boolean checkBoard(){
-    readPuzzle solution = new readPuzzle();
-    String[][] solutionGrid = solution.getSolution();
+    String[][] solutionGrid = puz.getSolution();
     for (int i=0;i<9;i++){
 	    for (int ii=0; ii<9; ii++){
-        if(!puzzle[i][ii].getText().equals(solutionGrid[i][ii])){
+        if(puzzle[i][ii].getText().length() == 0){
           return false;
         }
+        else if(!puzzle[i][ii].getText().substring(0,1).equals(solutionGrid[i][ii].substring(0,1))){
+          return false;
+        }
+      
       }
     }
     return true;
