@@ -69,6 +69,7 @@ public class MenuGui extends JFrame implements ActionListener{
       if(s.equals("Play")){
 	  puzzleGUI p = new puzzleGUI();
 	  p.setVisible(true);
+	  this.setVisible(false);
       }
       
   }

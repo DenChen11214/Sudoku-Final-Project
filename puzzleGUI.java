@@ -31,7 +31,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     hint = new JButton("hint");
     check = new JButton("check");
     solution = new JButton("solution");
-    backToMenu = new JButton("backToMenu");
+    backToMenu = new JButton("Back To Menu");
     reset = new JButton("reset");
     //putting values of a sudoku puzzle into the textfields
     puz = new readPuzzle();
@@ -128,6 +128,11 @@ public class puzzleGUI extends JFrame implements ActionListener{
       else{
         checkText.setText("Something's Wrong...");
       }
+    }
+    if(s.equals("Back To Menu")){
+	this.setVisible(false);
+	MenuGui m = new MenuGui();
+	m.setVisible(true);
     }
   }
   public static void main(String[] args) {
