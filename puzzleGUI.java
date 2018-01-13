@@ -92,7 +92,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     for (int i=0;i<9;i++){
 	    for (int ii=0; ii<9; ii++){
         if(puzzle[i][ii].isEditable()){
-          puzzle[i][ii].setText(" ");
+          puzzle[i][ii].setText("");
         }
       }
     }
@@ -113,6 +113,26 @@ public class puzzleGUI extends JFrame implements ActionListener{
     }
     return true;
   }
+  //sets the value of an empty box to the right number
+  public boolean hint(){
+    Random r = new Random();
+    Random c = new Random();
+    int row = r.nextInt(9);
+    int col = c.nextInt(9);
+    boolean a = false;
+    for(int i =1; i< 10;i++){
+      if(puzzle[row][col].getText().contains(i+ "")){
+        a = true;
+      }
+    }
+    if(!a){
+      puzzle[row][col].setText(puz.getSolution()[row][col]);
+    }
+    else{
+      hint();
+    }
+    return true;
+  }
   public void actionPerformed(ActionEvent e){
     String s = e.getActionCommand();
     if(s.equals("solution")){
@@ -129,10 +149,13 @@ public class puzzleGUI extends JFrame implements ActionListener{
         checkText.setText("Something's Wrong...");
       }
     }
+    if(s.equals("hint")){
+      hint();
+    }
     if(s.equals("Back To Menu")){
-	this.setVisible(false);
-	MenuGui m = new MenuGui();
-	m.setVisible(true);
+      this.setVisible(false);
+      MenuGui m = new MenuGui();
+      m.setVisible(true);
     }
   }
   public static void main(String[] args) {
