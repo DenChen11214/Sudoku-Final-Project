@@ -5,14 +5,52 @@ import java.util.Random;
 public class readPuzzle{
     private String[][] puzzle =new String[9][9];
     private String[][] solution = new String[9][9];
-    private Random randgen = new Random();
-    private int randomNum = randgen.nextInt(5)+1;
-    private String filename = randomNum + ".csv";
-    private String solutionFile = randomNum +" solution.csv";
+    private Random randgen;
+    private int randomNum;
+    private String filename;
+    private String solutionFile;
     public readPuzzle(){
+    	randgen = new Random();
+    	randomNum = randgen.nextInt(5)+1;
+    	filename = randomNum + ".csv";
+    	solutionFile = randomNum +" solution.csv";
+    	try{
+        	File f = new File(filename);//can combine
+        	Scanner in = new Scanner(f).useDelimiter(",");//into one line
+	    	for (int i=0;i<9;i++){
+        		for (int ii=0;ii<9;ii++){
+            		if (in.hasNext()){
+            			puzzle[i][ii]= in.next();
+            		}
+        		}
+	    	}
+      }catch(FileNotFoundException e){
+        System.out.println("File not found");
+        System.exit(1);
+      }
+      try{
+        File f = new File(solutionFile);//can combine
+        Scanner in = new Scanner(f).useDelimiter(",");//into one line
+	    	for (int i=0;i<9;i++){
+          for (int ii=0;ii<9;ii++){
+            if (in.hasNext()){
+              solution[i][ii]= in.next();
+            }
+          }
+	    	}
+      }catch(FileNotFoundException e){
+        System.out.println("File not found");
+        System.exit(1);
+      }
+    }
+    public readPuzzle(int seed){
+    	randgen = new Random(seed);
+    	randomNum = randgen.nextInt(5)+1;
+    	filename = randomNum + ".csv";
+    	solutionFile = randomNum +" solution.csv";
     	try{
         File f = new File(filename);//can combine
-        Scanner in = new Scanner(f).useDelimiter(",");//into one line
+        Scanner in = new Scanner(f).useDelimiter(",");
 	    	for (int i=0;i<9;i++){
           for (int ii=0;ii<9;ii++){
             if (in.hasNext()){
