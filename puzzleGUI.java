@@ -68,6 +68,60 @@ public class puzzleGUI extends JFrame implements ActionListener{
     pane.add(seed);
     pane.add(seedNumber);
   }
+
+  public puzzleGUI(int seedNum){
+    //setting fields up
+    pane = this.getContentPane();
+    pane.setLayout(new FlowLayout());
+    this.setTitle("Sudoku");
+    this.setSize(300,400);
+    this.setLocation(0,0);
+    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    seed = new JLabel("Seed:");
+    result = new JLabel("Result:");
+    seedNumber = new JTextField(10);
+    checkText = new JTextField(20);
+    checkText.setEditable(false);
+    hint = new JButton("hint");
+    check = new JButton("check");
+    solution = new JButton("solution");
+    backToMenu = new JButton("Back To Menu");
+    reset = new JButton("reset");
+    //putting values of a sudoku puzzle into the textfields
+    puz = new readPuzzle(seedNum);
+    String[][] grid = puz.getPuzzle();
+    for (int i=0;i<9;i++){
+      for (int ii=0; ii<9; ii++){
+        if(!grid[i][ii].equals("0")){
+          puzzle[i][ii]=new JTextField(grid[i][ii],2);
+          puzzle[i][ii].setEditable(false);
+          pane.add(puzzle[i][ii]);
+        }
+        else{
+          puzzle[i][ii] = new JTextField(2);
+          puzzle[i][ii].setEditable(true);
+          pane.add(puzzle[i][ii]);
+        }
+      
+      }
+    }
+    //adding action listeners
+    check.addActionListener(this);
+    hint.addActionListener(this);
+    solution.addActionListener(this);
+    backToMenu.addActionListener(this);
+    reset.addActionListener(this);
+    //adding everything
+    pane.add(check);
+    pane.add(result);
+    pane.add(checkText);
+    pane.add(hint);
+    pane.add(solution);
+    pane.add(backToMenu);
+    pane.add(reset);
+    pane.add(seed);
+    pane.add(seedNumber);
+  }
   //returns a String[][] of the field puzzle
   public String[][] getPuzzle(){
     String[][] puz = new String[9][9];

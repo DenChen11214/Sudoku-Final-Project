@@ -34,9 +34,9 @@ public class MenuGui extends JFrame implements ActionListener{
     sudoku.setFont(new Font("Serif Bold", Font.PLAIN, 40));
     difficultyLabel.setFont(new Font("Serif",Font.PLAIN, 20));
     seed.setFont(new Font("Serif",Font.PLAIN, 20));
-    seedNumber.setMinimumSize(new Dimension(100,25));
-    seedNumber.setPreferredSize(new Dimension(100,25));
-    seedNumber.setMaximumSize(new Dimension(100,25));
+    seedNumber.setMinimumSize(new Dimension(200,25));
+    seedNumber.setPreferredSize(new Dimension(200,25));
+    seedNumber.setMaximumSize(new Dimension(200,25));
     difficultyMenu.setMinimumSize(new Dimension(100,25));
     difficultyMenu.setPreferredSize(new Dimension(100,25));
     difficultyMenu.setMaximumSize(new Dimension(100,25));
@@ -67,9 +67,21 @@ public class MenuGui extends JFrame implements ActionListener{
   public void actionPerformed(ActionEvent e){
       String s = e.getActionCommand();
       if(s.equals("Play")){
-	  puzzleGUI p = new puzzleGUI();
-	  p.setVisible(true);
-	  this.setVisible(false);
+        if (seed.getText().equals("")){
+          puzzleGUI p = new puzzleGUI();
+          p.setVisible(true);
+          this.setVisible(false);
+        }
+        else{
+          try{
+          puzzleGUI p = new puzzleGUI(Integer.parseInt(seedNumber.getText()));
+          p.setVisible(true);
+          this.setVisible(false);
+        }
+        catch(NumberFormatException error){
+          seedNumber.setText("Please enter an integer");
+        }
+        }
       }
       
   }
