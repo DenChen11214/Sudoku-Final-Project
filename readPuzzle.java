@@ -9,11 +9,11 @@ public class readPuzzle{
     private int randomNum;
     private String filename;
     private String solutionFile;
-    public readPuzzle(){
+    public readPuzzle(String dif){
     	randgen = new Random();
     	randomNum = randgen.nextInt(5)+1;
-    	filename = randomNum + ".csv";
-    	solutionFile = randomNum +" solution.csv";
+    	filename = "./" + dif +"/"+randomNum + ".csv";
+    	solutionFile = "./" + dif +"/"+randomNum +" solution.csv";
     	try{
         	File f = new File(filename);//can combine
         	Scanner in = new Scanner(f).useDelimiter(",");//into one line
@@ -43,11 +43,11 @@ public class readPuzzle{
         System.exit(1);
       }
     }
-    public readPuzzle(int seed){
+    public readPuzzle(int seed, String dif){
     	randgen = new Random(seed);
     	randomNum = randgen.nextInt(5)+1;
-    	filename = randomNum + ".csv";
-    	solutionFile = randomNum +" solution.csv";
+    	filename = "./" + dif +"/"+randomNum + ".csv";
+    	solutionFile = "./" + dif +"/"+randomNum +" solution.csv";
     	try{
         File f = new File(filename);//can combine
         Scanner in = new Scanner(f).useDelimiter(",");
