@@ -15,7 +15,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
   private Container pane;
   private JLabel result;
   private readPuzzle puz;
-  public puzzleGUI(){
+  public puzzleGUI(String dif){
     //setting fields up
     pane = this.getContentPane();
     pane.setLayout(new FlowLayout());
@@ -34,7 +34,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     backToMenu = new JButton("Back To Menu");
     reset = new JButton("reset");
     //putting values of a sudoku puzzle into the textfields
-    puz = new readPuzzle();
+    puz = new readPuzzle(dif);
     String[][] grid = puz.getPuzzle();
     for (int i=0;i<9;i++){
 	    for (int ii=0; ii<9; ii++){
@@ -69,7 +69,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     pane.add(seedNumber);
   }
 
-  public puzzleGUI(int seedNum){
+  public puzzleGUI(int seedNum , String dif){
     //setting fields up
     pane = this.getContentPane();
     pane.setLayout(new FlowLayout());
@@ -88,7 +88,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     backToMenu = new JButton("Back To Menu");
     reset = new JButton("reset");
     //putting values of a sudoku puzzle into the textfields
-    puz = new readPuzzle(seedNum);
+    puz = new readPuzzle(seedNum, dif);
     String[][] grid = puz.getPuzzle();
     for (int i=0;i<9;i++){
       for (int ii=0; ii<9; ii++){
