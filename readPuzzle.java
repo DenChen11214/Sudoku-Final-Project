@@ -11,7 +11,7 @@ public class readPuzzle{
     private String solutionFile;
     public readPuzzle(String dif){
     	randgen = new Random();
-    	randomNum = randgen.nextInt(5)+1;
+    	randomNum = randgen.nextInt(3)+1;
     	filename = "./" + dif +"/"+randomNum + ".csv";
     	solutionFile = "./" + dif +"/"+randomNum +" solution.csv";
     	try{
@@ -45,7 +45,7 @@ public class readPuzzle{
     }
     public readPuzzle(int seed, String dif){
     	randgen = new Random(seed);
-    	randomNum = randgen.nextInt(5)+1;
+    	randomNum = randgen.nextInt(3)+1;
     	filename = "./" + dif +"/"+randomNum + ".csv";
     	solutionFile = "./" + dif +"/"+randomNum +" solution.csv";
     	try{
@@ -104,10 +104,6 @@ public class readPuzzle{
 		    }
       }
       return ans;
-    }
-    public static void main(String[] args){
-	    readPuzzle a = new readPuzzle();
-	    System.out.println(a);
     }
   }
 	

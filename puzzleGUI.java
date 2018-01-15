@@ -212,9 +212,4 @@ public class puzzleGUI extends JFrame implements ActionListener{
       m.setVisible(true);
     }
   }
-  public static void main(String[] args) {
-    puzzleGUI m = new puzzleGUI();
-    m.setVisible(true);
-
-  }
 }
