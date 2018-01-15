@@ -168,24 +168,31 @@ public class puzzleGUI extends JFrame implements ActionListener{
     }
     return true;
   }
-  //sets the value of an empty box to the right number
+  public boolean full(){
+    boolean ans = true;
+    for (int row=0;row<9;row++){
+      for (int col=0;col<9;col++){
+        if (puzzle[row][col].getText().equals("")){
+          ans=false;
+        }
+      }
+    }
+    return ans;
+  }
+   //sets the value of an empty box to the right number
   public boolean hint(){
+    if (!full()){
     Random r = new Random();
     Random c = new Random();
     int row = r.nextInt(9);
     int col = c.nextInt(9);
-    boolean a = false;
-    for(int i =1; i< 10;i++){
-      if(puzzle[row][col].getText().contains(i+ "")){
-        a = true;
-      }
-    }
-    if(!a){
+    if(puzzle[row][col].getText().equals("")){
       puzzle[row][col].setText(puz.getSolution()[row][col]);
     }
     else{
       hint();
     }
+  }
     return true;
   }
   public void actionPerformed(ActionEvent e){
