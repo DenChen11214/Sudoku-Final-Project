@@ -20,8 +20,10 @@ public class puzzleGUI extends JFrame implements ActionListener{
     public puzzleGUI(){
 	//setting fields up
 	pane = this.getContentPane();
-	puzzlePanel = new JPanel(nwe flowLayout());
-	features = new JPanel(new BoxLayout(features, BoxLayout.Y_AXIS));
+	puzzlePanel = new JPanel();
+  puzzlePanel.setLayout(new GridLayout(9,9));
+	features = new JPanel();
+  features.setLayout(new BoxLayout(features, BoxLayout.Y_AXIS));
 	pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
 	this.setTitle("Sudoku");
 	this.setSize(300,400);
@@ -45,12 +47,12 @@ public class puzzleGUI extends JFrame implements ActionListener{
 		if(!grid[i][ii].equals("0")){
 		    puzzle[i][ii]=new JTextField(grid[i][ii],2);
 		    puzzle[i][ii].setEditable(false);
-		    pane.add(puzzle[i][ii]);
+		    puzzlePanel.add(puzzle[i][ii]);
 		}
 		else{
 		    puzzle[i][ii] = new JTextField(2);
 		    puzzle[i][ii].setEditable(true);
-		    pane.add(puzzle[i][ii]);
+		    puzzlePanel.add(puzzle[i][ii]);
 		}
       
 	    }
@@ -64,15 +66,17 @@ public class puzzleGUI extends JFrame implements ActionListener{
 	backToMenu.addActionListener(this);
 	reset.addActionListener(this);
 	//adding everything
-	pane.add(check);
-	pane.add(result);
-	pane.add(checkText);
-	pane.add(hint);
-	pane.add(solution);
-	pane.add(backToMenu);
-	pane.add(reset);
-	pane.add(seed);
-	pane.add(seedNumber);
+	features.add(check);
+	features.add(result);
+	features.add(checkText);
+	features.add(hint);
+	features.add(solution);
+	features.add(backToMenu);
+	features.add(reset);
+	features.add(seed);
+	features.add(seedNumber);
+  pane.add(puzzlePanel);
+  pane.add(features);
     }
     //returns a String[][] of the field puzzle
     public String[][] getPuzzle(){
