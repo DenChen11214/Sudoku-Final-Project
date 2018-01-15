@@ -65,8 +65,6 @@ public class puzzleGUI extends JFrame implements ActionListener{
     pane.add(solution);
     pane.add(backToMenu);
     pane.add(reset);
-    pane.add(seed);
-    pane.add(seedNumber);
   }
 
   public puzzleGUI(int seedNum , String dif){
@@ -105,7 +103,9 @@ public class puzzleGUI extends JFrame implements ActionListener{
       
       }
     }
+    System.out.println(seedNum);
     seedNumber.setText(""+seedNum);
+    seedNumber.setEditable(false);
     //adding action listeners
     check.addActionListener(this);
     hint.addActionListener(this);
