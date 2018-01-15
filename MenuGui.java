@@ -67,7 +67,7 @@ public class MenuGui extends JFrame implements ActionListener{
   public void actionPerformed(ActionEvent e){
       String s = e.getActionCommand();
       if(s.equals("Play")){
-        if (seed.getText().equals("Seed(Optional)")){
+        if (seedNumber.getText().equals("")){
           puzzleGUI p = new puzzleGUI((String)difficultyMenu.getSelectedItem());
           p.setVisible(true);
           this.setVisible(false);

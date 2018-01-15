@@ -99,7 +99,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     seed = new JLabel("Seed:");
     result = new JLabel("Result:");
-    seedNumber = new JTextField(10);
+    seedNumber = new JTextField(seedNum + "", 10);
     checkText = new JTextField(20);
     checkText.setEditable(false);
     hint = new JButton("hint");
@@ -125,7 +125,6 @@ public class puzzleGUI extends JFrame implements ActionListener{
       
       }
     }
-    seedNumber.setText(""+seedNum);
     //adding action listeners
     check.addActionListener(this);
     hint.addActionListener(this);
@@ -222,9 +221,5 @@ public class puzzleGUI extends JFrame implements ActionListener{
       MenuGui m = new MenuGui();
       m.setVisible(true);
     }
-  }
-  public static void main(String[] args) {
-    puzzleGUI m = new puzzleGUI();
-    m.setVisible(true);
   }
 }
