@@ -105,6 +105,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
       
       }
     }
+    seedNumber.setText(""+seedNum);
     //adding action listeners
     check.addActionListener(this);
     hint.addActionListener(this);
