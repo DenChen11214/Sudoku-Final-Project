@@ -36,11 +36,11 @@ public class puzzleGUI extends JFrame implements ActionListener{
     seedNumber.setEditable(false);
     checkText = new JTextField(20);
     checkText.setEditable(false);
-    hint = new JButton("hint");
-    check = new JButton("check");
-    solution = new JButton("solution");
+    hint = new JButton("Hint");
+    check = new JButton("Check");
+    solution = new JButton("Solution");
     backToMenu = new JButton("Back To Menu");
-    reset = new JButton("reset");
+    reset = new JButton("Reset");
     //putting values of a sudoku puzzle into the textfields
     puz = new readPuzzle(dif);
     String[][] grid = puz.getPuzzle();
@@ -116,20 +116,20 @@ public class puzzleGUI extends JFrame implements ActionListener{
     features.setLayout(new BoxLayout(features, BoxLayout.Y_AXIS));
     pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
     this.setTitle("Sudoku");
-    this.setSize(300,500);
+    this.setSize(500,500);
     this.setLocation(0,0);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     seed = new JLabel("Seed:");
     result = new JLabel("Result:");
-    seedNumber = new JTextField(10);
+    seedNumber = new JTextField("" + seedNum,10);
     seedNumber.setEditable(false);
     checkText = new JTextField(20);
     checkText.setEditable(false);
-    hint = new JButton("hint");
-    check = new JButton("check");
-    solution = new JButton("solution");
+    hint = new JButton("Hint");
+    check = new JButton("Check");
+    solution = new JButton("Solution");
     backToMenu = new JButton("Back To Menu");
-    reset = new JButton("reset");
+    reset = new JButton("Reset");
     //putting values of a sudoku puzzle into the textfields
     puz = new readPuzzle(seedNum,dif);
     String[][] grid = puz.getPuzzle();
@@ -249,13 +249,13 @@ public class puzzleGUI extends JFrame implements ActionListener{
   }
   public void actionPerformed(ActionEvent e){
     String s = e.getActionCommand();
-    if(s.equals("solution")){
+    if(s.equals("Solution")){
       showSolution();
     }
-    if(s.equals("reset")){
+    if(s.equals("Reset")){
       resetBoard();
     }
-    if(s.equals("check")){
+    if(s.equals("Check")){
       if(checkBoard()){
         checkText.setText("You Win!");
       }
@@ -263,7 +263,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
         checkText.setText("Something's Wrong...");
       }
     }
-    if(s.equals("hint")){
+    if(s.equals("Hint")){
       hint();
     }
     if(s.equals("Back To Menu")){
