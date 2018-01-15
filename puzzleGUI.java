@@ -17,7 +17,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
   private readPuzzle puz;
   private JPanel puzzlePanel;
   private JPanel features;
-  public puzzleGUI(){
+  public puzzleGUI(String dif){
     //setting fields up
     pane = this.getContentPane();
     puzzlePanel = new JPanel();
@@ -40,7 +40,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     backToMenu = new JButton("Back To Menu");
     reset = new JButton("reset");
     //putting values of a sudoku puzzle into the textfields
-    puz = new readPuzzle();
+    puz = new readPuzzle(dif);
     String[][] grid = puz.getPuzzle();
     for (int i=0;i<9;i++){
       for (int ii=0; ii<9; ii++){
@@ -89,7 +89,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     return puz;
   }
 
-  public puzzleGUI(int seedNum){
+  public puzzleGUI(int seedNum , String dif){
     //setting fields up
     pane = this.getContentPane();
     pane.setLayout(new FlowLayout());
@@ -108,7 +108,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     backToMenu = new JButton("Back To Menu");
     reset = new JButton("reset");
     //putting values of a sudoku puzzle into the textfields
-    puz = new readPuzzle(seedNum);
+    puz = new readPuzzle(seedNum, dif);
     String[][] grid = puz.getPuzzle();
     for (int i=0;i<9;i++){
       for (int ii=0; ii<9; ii++){
@@ -125,6 +125,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
       
       }
     }
+    seedNumber.setText(""+seedNum);
     //adding action listeners
     check.addActionListener(this);
     hint.addActionListener(this);
