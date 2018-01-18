@@ -51,11 +51,14 @@ public class puzzleGUI extends JFrame implements ActionListener{
         if(!grid[i][ii].equals("0")){
           puzzle[i][ii]=new JTextField(grid[i][ii],1);
           puzzle[i][ii].setEditable(false);
+          puzzle[i][ii].setHorizontalAlignment(JTextField.CENTER);
           panelRows[i].add(puzzle[i][ii]);
+          
         }
         else{
           puzzle[i][ii] = new JTextField(1);
           puzzle[i][ii].setEditable(true);
+          puzzle[i][ii].setHorizontalAlignment(JTextField.CENTER);
           panelRows[i].add(puzzle[i][ii]);
         }
       }
