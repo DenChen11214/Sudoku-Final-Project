@@ -114,7 +114,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     //setting fields up
     pane = this.getContentPane();
     puzzlePanel = new JPanel();
-    puzzlePanel.setLayout(new BoxLayout(puzzlePanel, BoxLayout.Y_AXIS));
+    puzzlePanel.setLayout(new GridLayout(9,9));
     features = new JPanel();
     features.setLayout(new BoxLayout(features, BoxLayout.Y_AXIS));
     pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
@@ -138,16 +138,18 @@ public class puzzleGUI extends JFrame implements ActionListener{
     String[][] grid = puz.getPuzzle();
     for (int i=0;i<9;i++){
       panelRows[i] = new JPanel();
-      panelRows[i].setLayout(new FlowLayout());
+      panelRows[i].setLayout(new GridLayout(1,9));
       for (int ii=0; ii<9; ii++){
         if(!grid[i][ii].equals("0")){
           puzzle[i][ii]=new JTextField(grid[i][ii],2);
           puzzle[i][ii].setEditable(false);
+          puzzle[i][ii].setHorizontalAlignment(JTextField.CENTER);
           panelRows[i].add(puzzle[i][ii]);
         }
         else{
           puzzle[i][ii] = new JTextField(2);
           puzzle[i][ii].setEditable(true);
+          puzzle[i][ii].setHorizontalAlignment(JTextField.CENTER);
           panelRows[i].add(puzzle[i][ii]);
         }
       }
