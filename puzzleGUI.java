@@ -25,7 +25,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     features = new JPanel();
     pane.setLayout(new BoxLayout(pane, BoxLayout.PAGE_AXIS));
     this.setTitle("Sudoku");
-    this.setSize(500,500);
+    this.setSize(400,500);
     this.setLocation(0,0);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     seed = new JLabel("Seed:");
@@ -42,6 +42,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     for(int i=0;i<9;i++){
       boxes[i] = new JPanel();
       boxes[i].setLayout(new GridLayout(3,3));
+      boxes[i].setBorder(BorderFactory.createLineBorder(Color.black));
       
     }
     for(int i=0;i<3;i++){
