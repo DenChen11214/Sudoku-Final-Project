@@ -22,8 +22,6 @@ public class puzzleGUI extends JFrame implements ActionListener{
   public puzzleGUI(String dif){
     //setting fields up
     pane = this.getContentPane();
-    puzzlePanel = new JPanel();
-    puzzlePanel.setLayout(new GridLayout(9,9));
     features = new JPanel();
     pane.setLayout(new BoxLayout(pane, BoxLayout.PAGE_AXIS));
     this.setTitle("Sudoku");
@@ -84,7 +82,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
        boxRows[2].add(boxes[i]);
     }
     for(int i =0; i< 3;i++){
-      puzzlePanel.add(boxRows[i]);
+      pane.add(boxRows[i]);
     }
     //editing fields
     seedNumber.setMinimumSize(new Dimension(200,25));
@@ -109,7 +107,6 @@ public class puzzleGUI extends JFrame implements ActionListener{
     backToMenu.addActionListener(this);
     reset.addActionListener(this);
     //adding everything
-    pane.add(puzzlePanel);
     pane.add(check);
     pane.add(result);
     pane.add(checkText);
