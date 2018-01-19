@@ -34,5 +34,28 @@ public class solveSudoku{
     public boolean isSafe(int row, int col, int num){
 	return rowSafe(row,num)&&colSafe(col,num)&&boxSafe(row, col, num);
     }
-    
+    public int nextRow(){
+	for(int r=0;r<9;r++){
+	    for (int c=0; c<9; c++){
+		if (grid[r][c]==0){
+		    return r;
+		}
+	    }
+	}
+	return -1;
+    }
+    public int nextCol(){
+	for(int r=0;r<9;r++){
+	    for (int c=0; c<9; c++){
+		if (grid[r][c]==0){
+		    return c;
+		}
+	    }
+	}
+	return -1;
+    }
+    public void solve(){
+	int row;
+	int col;
+	for 
 }
