@@ -9,6 +9,7 @@ public class MenuGui extends JFrame implements ActionListener{
   private JLabel difficultyLabel;
   private JTextField seedNumber;
   private Container pane;
+  private JButton howToPlay;
   public MenuGui(){
     //initizalizing fields and window settings
     String[] difficultyList = {"Easy","Medium","Hard"};
@@ -16,17 +17,14 @@ public class MenuGui extends JFrame implements ActionListener{
     pane.setBackground(Color.WHITE);
     pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
     this.setTitle("Sudoku Menu");
-    this.setSize(550,350);
-    this.setLocation(0,0);
+    this.setSize(550,425);
+    this.setLocationRelativeTo(null);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     start = new JButton("Play");
     sudoku = new JLabel("Sudoku");
+    howToPlay = new JButton("How to Play");
     seed = new JLabel("Seed(Optional):");
-    this.setSize(500,350);
-    this.setLocation(0,0);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-    sudoku = new JLabel("Sudoku");
-    seed = new JLabel("Seed(Optional)");
     difficultyMenu = new JComboBox<>(difficultyList);
     difficultyLabel = new JLabel("Difficulty:");
     seedNumber = new JTextField(6);
@@ -44,17 +42,24 @@ public class MenuGui extends JFrame implements ActionListener{
     start.setMinimumSize(new Dimension(140,40));
     start.setPreferredSize(new Dimension(140,40));
     start.setMaximumSize(new Dimension(140,40));
+    howToPlay.setMinimumSize(new Dimension(140,30));
+    howToPlay.setPreferredSize(new Dimension(140,30));
+    howToPlay.setMaximumSize(new Dimension(140,30));
+
     sudoku.setAlignmentX(Component.CENTER_ALIGNMENT);
     start.setAlignmentX(Component.CENTER_ALIGNMENT);
     difficultyMenu.setAlignmentX(Component.CENTER_ALIGNMENT);
     difficultyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
     seedNumber.setAlignmentX(Component.CENTER_ALIGNMENT);
     seed.setAlignmentX(Component.CENTER_ALIGNMENT);
+    howToPlay.setAlignmentX(Component.CENTER_ALIGNMENT);
     start.addActionListener(this);
-    
+    howToPlay.addActionListener(this);
     //adding fields to the pane
     pane.add(sudoku);
     pane.add(Box.createRigidArea(new Dimension(0,30)));
+    pane.add(howToPlay);
+    pane.add(Box.createRigidArea(new Dimension(0,20))); 
     pane.add(difficultyLabel);
     pane.add(Box.createRigidArea(new Dimension(0,10)));
     pane.add(difficultyMenu);
