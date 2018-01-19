@@ -54,8 +54,23 @@ public class solveSudoku{
 	}
 	return -1;
     }
-    public void solve(){
-	int row;
-	int col;
-	for 
+    public boolean solve(){
+	int row = nextRow;
+	int col = nextCol;
+	if (row==-1){
+	    return true;
+	}
+	else{
+	    for (int num = 1; num <= 9; num++){
+		if (isSafe(grid, row, col, num)){
+		    grid[row][col] = num;
+		    if (solve()){
+			return true;
+		    }
+		    grid[row][col] = 0;
+		}
+	    }
+	}
+    }
+    return false;
 }
