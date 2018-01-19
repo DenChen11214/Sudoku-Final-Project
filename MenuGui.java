@@ -13,6 +13,7 @@ public class MenuGui extends JFrame implements ActionListener{
     //initizalizing fields and window settings
     String[] difficultyList = {"Easy","Medium","Hard"};
     pane = this.getContentPane();
+    pane.setBackground(Color.WHITE);
     pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
     this.setTitle("Sudoku Menu");
     this.setSize(550,350);
