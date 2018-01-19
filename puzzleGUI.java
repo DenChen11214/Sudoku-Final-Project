@@ -18,14 +18,14 @@ public class puzzleGUI extends JFrame implements ActionListener{
   private JPanel puzzlePanel;
   private JPanel[] boxes = new JPanel[9];
   private JPanel features;
+  private JPanel[] boxRows = new JPanel[3];
   public puzzleGUI(String dif){
     //setting fields up
     pane = this.getContentPane();
     puzzlePanel = new JPanel();
     puzzlePanel.setLayout(new GridLayout(9,9));
     features = new JPanel();
-    features.setLayout(new BoxLayout(features, BoxLayout.Y_AXIS));
-    pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
+    pane.setLayout(new BoxLayout(pane, BoxLayout.PAGE_AXIS));
     this.setTitle("Sudoku");
     this.setSize(500,500);
     this.setLocation(0,0);
@@ -46,6 +46,10 @@ public class puzzleGUI extends JFrame implements ActionListener{
       boxes[i].setLayout(new GridLayout(3,3));
       
     }
+    for(int i=0;i<3;i++){
+      boxRows[i] = new JPanel();
+      boxRows[i].setLayout(new GridLayout(1,3));
+    }
     //putting values of a sudoku puzzle into the textfields
     puz = new readPuzzle(dif);
     String[][] grid = puz.getPuzzle();
@@ -65,8 +69,23 @@ public class puzzleGUI extends JFrame implements ActionListener{
         }
       }
     }
-    addToBox(1,1);
-    puzzlePanel.add(boxes[0]);
+    for(int r = 1;r <= 7; r +=3){
+      for(int c =1; c<= 7; c+=3){
+        addToBox(r,c);
+      }
+    }
+    for(int i = 0; i< 3;i++){
+      boxRows[0].add(boxes[i]);
+    }
+    for(int i = 3; i< 6;i++){
+      boxRows[1].add(boxes[i]);
+    }
+    for(int i = 6; i< 9;i++){
+       boxRows[2].add(boxes[i]);
+    }
+    for(int i =0; i< 3;i++){
+      puzzlePanel.add(boxRows[i]);
+    }
     //editing fields
     seedNumber.setMinimumSize(new Dimension(200,25));
     seedNumber.setPreferredSize(new Dimension(200,25));
@@ -90,17 +109,16 @@ public class puzzleGUI extends JFrame implements ActionListener{
     backToMenu.addActionListener(this);
     reset.addActionListener(this);
     //adding everything
-    features.add(check);
-    features.add(result);
-    features.add(checkText);
-    features.add(hint);
-    features.add(solution);
-    features.add(backToMenu);
-    features.add(reset);
-    features.add(seed);
-    features.add(seedNumber);
     pane.add(puzzlePanel);
-    pane.add(features);
+    pane.add(check);
+    pane.add(result);
+    pane.add(checkText);
+    pane.add(hint);
+    pane.add(solution);
+    pane.add(backToMenu);
+    pane.add(reset);
+    pane.add(seed);
+    pane.add(seedNumber);
   }
   //returns a String[][] of the field puzzle
   public String[][] getPuzzle(){
