@@ -22,6 +22,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
   public puzzleGUI(String dif){
     //setting fields up
     pane = this.getContentPane();
+    pane.setBackground(Color.WHITE);
     features = new JPanel();
     pane.setLayout(new BoxLayout(pane, BoxLayout.PAGE_AXIS));
     this.setTitle("Sudoku");
@@ -68,6 +69,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
         }
       }
     }
+    //placing textfields into boxes and boxes into boxrows
     for(int r = 1;r <= 7; r +=3){
       for(int c =1; c<= 7; c+=3){
         addToBox(r,c);
