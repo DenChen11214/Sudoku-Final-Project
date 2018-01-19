@@ -16,7 +16,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
   private JLabel result;
   private readPuzzle puz;
   private JPanel puzzlePanel;
-  private JPanel[] panelRows = new JPanel[9];
+  private JPanel[] boxes = new JPanel[9];
   private JPanel features;
   public puzzleGUI(String dif){
     //setting fields up
@@ -41,29 +41,32 @@ public class puzzleGUI extends JFrame implements ActionListener{
     solution = new JButton("Solution");
     backToMenu = new JButton("Back To Menu");
     reset = new JButton("Reset");
+    for(int i=0;i<9;i++){
+      boxes[i] = new JPanel();
+      boxes[i].setLayout(new GridLayout(3,3));
+      
+    }
     //putting values of a sudoku puzzle into the textfields
     puz = new readPuzzle(dif);
     String[][] grid = puz.getPuzzle();
     for (int i=0;i<9;i++){
-      panelRows[i] = new JPanel();
-      panelRows[i].setLayout(new GridLayout(1,9));
       for (int ii=0; ii<9; ii++){
         if(!grid[i][ii].equals("0")){
           puzzle[i][ii]=new JTextField(grid[i][ii],1);
           puzzle[i][ii].setEditable(false);
           puzzle[i][ii].setHorizontalAlignment(JTextField.CENTER);
-          panelRows[i].add(puzzle[i][ii]);
+          
           
         }
         else{
           puzzle[i][ii] = new JTextField(1);
           puzzle[i][ii].setEditable(true);
           puzzle[i][ii].setHorizontalAlignment(JTextField.CENTER);
-          panelRows[i].add(puzzle[i][ii]);
         }
       }
-      puzzlePanel.add(panelRows[i]);
     }
+    addToBox(1,1);
+    puzzlePanel.add(boxes[0]);
     //editing fields
     seedNumber.setMinimumSize(new Dimension(200,25));
     seedNumber.setPreferredSize(new Dimension(200,25));
@@ -109,7 +112,21 @@ public class puzzleGUI extends JFrame implements ActionListener{
     }
     return puz;
   }
-
+  //adds textfields to a certain box based on its starting row and col
+  private void addToBox(int row, int col){
+    int boxNumber = 0;
+    for(int r = row; r > 1;r -= 3){
+      boxNumber += 3;
+    }
+    for(int c = col;c > 1; c -= 3){
+      boxNumber += 1;
+    }
+    for(int i = row; i < row + 3;i++){
+      for(int n = col; n < col + 3;n++){
+        boxes[boxNumber].add(puzzle[i - 1][n - 1]);
+      }
+    }
+  }
   public puzzleGUI(int seedNum , String dif){
     //setting fields up
     pane = this.getContentPane();
@@ -137,23 +154,18 @@ public class puzzleGUI extends JFrame implements ActionListener{
     puz = new readPuzzle(seedNum,dif);
     String[][] grid = puz.getPuzzle();
     for (int i=0;i<9;i++){
-      panelRows[i] = new JPanel();
-      panelRows[i].setLayout(new GridLayout(1,9));
       for (int ii=0; ii<9; ii++){
         if(!grid[i][ii].equals("0")){
           puzzle[i][ii]=new JTextField(grid[i][ii],2);
           puzzle[i][ii].setEditable(false);
           puzzle[i][ii].setHorizontalAlignment(JTextField.CENTER);
-          panelRows[i].add(puzzle[i][ii]);
         }
         else{
           puzzle[i][ii] = new JTextField(2);
           puzzle[i][ii].setEditable(true);
           puzzle[i][ii].setHorizontalAlignment(JTextField.CENTER);
-          panelRows[i].add(puzzle[i][ii]);
         }
       }
-      puzzlePanel.add(panelRows[i]);
     }
     //editing fields
     seedNumber.setMinimumSize(new Dimension(200,25));
