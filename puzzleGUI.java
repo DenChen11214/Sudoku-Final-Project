@@ -20,6 +20,8 @@ public class puzzleGUI extends JFrame implements ActionListener{
   private JPanel features;
   private JPanel[] boxRows = new JPanel[3];
   public puzzleGUI(String dif){
+    //making uneditable textfields white
+    UIManager.put("TextField.inactiveBackground", Color.WHITE);
     //setting fields up
     pane = this.getContentPane();
     pane.setBackground(Color.WHITE);
@@ -50,6 +52,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
       boxRows[i] = new JPanel();
       boxRows[i].setLayout(new GridLayout(1,3));
     }
+
     //putting values of a sudoku puzzle into the textfields
     puz = new readPuzzle(dif);
     String[][] grid = puz.getPuzzle();
@@ -88,6 +91,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
       pane.add(boxRows[i]);
     }
     //editing fields
+    
     seedNumber.setMinimumSize(new Dimension(200,25));
     seedNumber.setPreferredSize(new Dimension(200,25));
     seedNumber.setMaximumSize(new Dimension(200,25));
