@@ -149,21 +149,22 @@ public class puzzleGUI extends JFrame implements ActionListener{
       }
     }
   }
+  //constructor for a puzzle with a seed
   public puzzleGUI(int seedNum , String dif){
+    //making uneditable textfields white
+    UIManager.put("TextField.inactiveBackground", Color.WHITE);
     //setting fields up
     pane = this.getContentPane();
-    puzzlePanel = new JPanel();
-    puzzlePanel.setLayout(new GridLayout(9,9));
+    pane.setBackground(Color.WHITE);
     features = new JPanel();
-    features.setLayout(new BoxLayout(features, BoxLayout.Y_AXIS));
-    pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
+    pane.setLayout(new BoxLayout(pane, BoxLayout.PAGE_AXIS));
     this.setTitle("Sudoku");
-    this.setSize(500,500);
+    this.setSize(400,500);
     this.setLocation(0,0);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     seed = new JLabel("Seed:");
     result = new JLabel("Result:");
-    seedNumber = new JTextField("" + seedNum,10);
+    seedNumber = new JTextField(10);
     seedNumber.setEditable(false);
     checkText = new JTextField(20);
     checkText.setEditable(false);
@@ -172,24 +173,56 @@ public class puzzleGUI extends JFrame implements ActionListener{
     solution = new JButton("Solution");
     backToMenu = new JButton("Back To Menu");
     reset = new JButton("Reset");
+    for(int i=0;i<9;i++){
+      boxes[i] = new JPanel();
+      boxes[i].setLayout(new GridLayout(3,3));
+      boxes[i].setBorder(BorderFactory.createLineBorder(Color.black));
+      
+    }
+    for(int i=0;i<3;i++){
+      boxRows[i] = new JPanel();
+      boxRows[i].setLayout(new GridLayout(1,3));
+    }
+
     //putting values of a sudoku puzzle into the textfields
     puz = new readPuzzle(seedNum,dif);
     String[][] grid = puz.getPuzzle();
     for (int i=0;i<9;i++){
       for (int ii=0; ii<9; ii++){
         if(!grid[i][ii].equals("0")){
-          puzzle[i][ii]=new JTextField(grid[i][ii],2);
+          puzzle[i][ii]=new JTextField(grid[i][ii],1);
           puzzle[i][ii].setEditable(false);
           puzzle[i][ii].setHorizontalAlignment(JTextField.CENTER);
+          
+          
         }
         else{
-          puzzle[i][ii] = new JTextField(2);
+          puzzle[i][ii] = new JTextField(1);
           puzzle[i][ii].setEditable(true);
           puzzle[i][ii].setHorizontalAlignment(JTextField.CENTER);
         }
       }
     }
+    //placing textfields into boxes and boxes into boxrows
+    for(int r = 1;r <= 7; r +=3){
+      for(int c =1; c<= 7; c+=3){
+        addToBox(r,c);
+      }
+    }
+    for(int i = 0; i< 3;i++){
+      boxRows[0].add(boxes[i]);
+    }
+    for(int i = 3; i< 6;i++){
+      boxRows[1].add(boxes[i]);
+    }
+    for(int i = 6; i< 9;i++){
+       boxRows[2].add(boxes[i]);
+    }
+    for(int i =0; i< 3;i++){
+      pane.add(boxRows[i]);
+    }
     //editing fields
+    
     seedNumber.setMinimumSize(new Dimension(200,25));
     seedNumber.setPreferredSize(new Dimension(200,25));
     seedNumber.setMaximumSize(new Dimension(200,25));
@@ -212,17 +245,15 @@ public class puzzleGUI extends JFrame implements ActionListener{
     backToMenu.addActionListener(this);
     reset.addActionListener(this);
     //adding everything
-    features.add(check);
-    features.add(result);
-    features.add(checkText);
-    features.add(hint);
-    features.add(solution);
-    features.add(backToMenu);
-    features.add(reset);
-    features.add(seed);
-    features.add(seedNumber);
-    pane.add(puzzlePanel);
-    pane.add(features);
+    pane.add(check);
+    pane.add(result);
+    pane.add(checkText);
+    pane.add(hint);
+    pane.add(solution);
+    pane.add(backToMenu);
+    pane.add(reset);
+    pane.add(seed);
+    pane.add(seedNumber);
   }
   //sets textfields to that of the solution
   public void showSolution(){
