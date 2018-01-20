@@ -20,6 +20,24 @@ public class solveSudoku{
     	solve(solution);
     	generatePuzzle(difNum);
    	}
+   	public solveSudoku(int seed, String dif){
+    	int difNum=0;
+    	if (dif.equals("Hard")){
+    		difNum=25;
+    	}
+    	if (dif.equals("Medium")){
+    		difNum=30;
+    	}
+    	if (dif.equals("Easy")){
+    		difNum=35;
+    	}
+    	randgen = new Random(seed);
+    	solution = new int[9][9];
+    	addRandom();
+    	solve(solution);
+    	generatePuzzle(difNum);
+   	}
+
    	public void copy(){
    		for(int r=0;r<9;r++){
 	    	for (int c=0; c<9; c++){
@@ -28,11 +46,7 @@ public class solveSudoku{
 	    }
    	}
    	public void generatePuzzle(int dif){
-   		for (int row =0; row < 9; row++){
-			for (int col =0; col < 9; col++){
-				puzzle[row][col]=solution[row][col];
-			}
-		}
+   		copy();
    		while (countNums(puzzle)>dif){
    			int r = randgen.nextInt(9);
    			int c = randgen.nextInt(9);
@@ -52,7 +66,7 @@ public class solveSudoku{
    		}
    	}
    	public void addRandom(){
-   		while (countNums(solution)<12){
+   		while (countNums(solution)<8){
    			int r = randgen.nextInt(9);
    			int c = randgen.nextInt(9);
    			int num = randgen.nextInt(9);
@@ -125,25 +139,41 @@ public class solveSudoku{
 	}
 	return -1;
     }
+    public boolean full(int[][] grid){
+    	for (int r = 0; r<9; r++){
+    		for (int c = 0; c<9; c++){
+    			if (grid[r][c]==0){
+    				return false;
+    			}
+    		}
+    	}
+    	return true;
+    }
     public boolean solve(int[][] grid){
-	int row = nextRow(grid);
-	int col = nextCol(grid);
-	if (row==-1){
-	    return true;
-	}
-	else{
-	    for (int num = 1; num <= 9; num++){
-		if (isSafe(grid,row, col, num)){
-		    grid[row][col] = num;
-		    if (solve(grid)){
-			return true;
-		    }
-		    solution[row][col] = 0;
+    	if (full(grid)){
+	    	return true;
 		}
-	    }
+		int row=-1;
+		int col=-1;
+		for (int i = 0; i < 9; i++){
+	    	for (int ii = 0; ii < 9; ii++){
+				if (grid[i][ii] == 0){
+		    		row =i;
+		    		col=ii;
+				}
+	    	}
+		}
+	    for (int num = 1; num <= 9; num++){
+			if (isSafe(grid,row, col, num)){
+	    		grid[row][col] = num;
+	    		if (solve(grid)){
+					return true;
+	    		}
+	    		grid[row][col]=0;
+			}
+    	}
+    	return false;
 	}
-    return false;
-}
 	public String[][] getPuzzle(){
 		String[][] ans = new String[9][9];
 		for (int row =0; row < 9; row++){
@@ -164,5 +194,9 @@ public class solveSudoku{
 	}
 	public String toString() {
       return Arrays.deepToString(puzzle);
+   }
+   public static void main(String[] args) {
+   	solveSudoku a =new solveSudoku("Easy");
+   	System.out.println(Arrays.deepToString(a.getPuzzle()));
    }
 }
