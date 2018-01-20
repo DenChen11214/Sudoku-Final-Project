@@ -164,7 +164,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     seed = new JLabel("Seed:");
     result = new JLabel("Result:");
-    seedNumber = new JTextField(10);
+    seedNumber = new JTextField(""+seedNum,10);
     seedNumber.setEditable(false);
     checkText = new JTextField(20);
     checkText.setEditable(false);
