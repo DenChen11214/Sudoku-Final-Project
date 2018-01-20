@@ -2,12 +2,23 @@ import java.util.*;
 public class solveSudoku{
     private int[][] solution;
     private int[][] puzzle=new int[9][9];
-    private Random randgen = new Random();
-    public solveSudoku(){
+    private Random randgen;
+    public solveSudoku(String dif){
+    	int difNum=0;
+    	if (dif.equals("Hard")){
+    		difNum=25;
+    	}
+    	if (dif.equals("Medium")){
+    		difNum=30;
+    	}
+    	if (dif.equals("Easy")){
+    		difNum=35;
+    	}
+    	randgen = new Random();
     	solution = new int[9][9];
     	addRandom();
     	solve(solution);
-    	generatePuzzle();
+    	generatePuzzle(difNum);
    	}
    	public void copy(){
    		for(int r=0;r<9;r++){
@@ -16,13 +27,13 @@ public class solveSudoku{
 	    	}
 	    }
    	}
-   	public void generatePuzzle(){
+   	public void generatePuzzle(int dif){
    		for (int row =0; row < 9; row++){
 			for (int col =0; col < 9; col++){
 				puzzle[row][col]=solution[row][col];
 			}
 		}
-   		while (countNums(puzzle)>25){
+   		while (countNums(puzzle)>dif){
    			int r = randgen.nextInt(9);
    			int c = randgen.nextInt(9);
    			int old = puzzle[r][c];
@@ -154,8 +165,4 @@ public class solveSudoku{
 	public String toString() {
       return Arrays.deepToString(puzzle);
    }
-	public static void main(String[] args) {
-		solveSudoku a = new solveSudoku();
-		System.out.println(a);
-	}
 }
