@@ -133,6 +133,24 @@ public class solveSudoku{
 	}
     return false;
 }
+	public String[][] getPuzzle(){
+		String[][] ans = new String[9][9];
+		for (int row =0; row < 9; row++){
+			for (int col =0; col < 9; col++){
+				ans[row][col]=""+puzzle[row][col];
+			}
+		}
+		return ans;
+	}
+	public String[][] getSolution(){
+		String[][] ans = new String[9][9];
+		for (int row =0; row < 9; row++){
+			for (int col =0; col < 9; col++){
+				ans[row][col]=""+solution[row][col];
+			}
+		}
+		return ans;
+	}
 	public String toString() {
       return Arrays.deepToString(puzzle);
    }
