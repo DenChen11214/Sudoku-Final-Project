@@ -29,7 +29,7 @@ public class puzzleGUI extends JFrame implements ActionListener{
     pane.setLayout(new BoxLayout(pane, BoxLayout.PAGE_AXIS));
     this.setTitle("Sudoku");
     this.setSize(400,500);
-    this.setLocation(0,0);
+    this.setLocationRelativeTo(null);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     seed = new JLabel("Seed:");
     result = new JLabel("Result:");
