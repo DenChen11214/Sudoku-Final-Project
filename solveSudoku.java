@@ -66,12 +66,11 @@ public class solveSudoku{
    		}
    	}
    	public void addRandom(){
-   		while (countNums(solution)<8){
-   			int r = randgen.nextInt(9);
+   		for(int i =0;i<9;i++){
    			int c = randgen.nextInt(9);
    			int num = randgen.nextInt(9);
-   			if (isSafe(solution,r,c,num)){
-   				solution[r][c]=num;
+   			if (isSafe(solution,i,c,num)){
+   				solution[i][c]=num;
    			}
    		}
    	}
