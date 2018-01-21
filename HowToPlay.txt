@@ -1,7 +1,0 @@
-Sudoku is a puzzle consisting of 81 squares divided into 9 blocks, each of which contain 9 squares.
-
-Rules: Each of the nine blocks, rows, columns has to contain all the numbers 1-9 within its squares. Each number can only appear once in a row, column or box.
-
-Some of the numbers are already given to the player and the rest of them must be figured out.
-
-Every puzzle has just one correct solution. 
