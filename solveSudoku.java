@@ -3,6 +3,8 @@ public class solveSudoku{
     private int[][] solution;
     private int[][] puzzle=new int[9][9];
     private Random randgen;
+
+    // contructor with difficulty and no seed
     public solveSudoku(String dif){
     	int difNum=0;
     	if (dif.equals("Hard")){
@@ -20,6 +22,7 @@ public class solveSudoku{
     	solve(solution);
     	generatePuzzle(difNum);
    	}
+   	// contructor with difficulty and seed
    	public solveSudoku(int seed, String dif){
     	int difNum=0;
     	if (dif.equals("Hard")){
@@ -37,7 +40,7 @@ public class solveSudoku{
     	solve(solution);
     	generatePuzzle(difNum);
    	}
-
+   	//creates an identical copy of solution into puzzle
    	public void copy(){
    		for(int r=0;r<9;r++){
 	    	for (int c=0; c<9; c++){
@@ -46,12 +49,12 @@ public class solveSudoku{
 	    }
    	}
    	public void generatePuzzle(int dif){
-   		copy();
-   		while (countNums(puzzle)>dif){
+   		copy(); //makes puzzle full
+   		while (countNums(puzzle)>dif){  //checks how many nums are left
    			int r = randgen.nextInt(9);
    			int c = randgen.nextInt(9);
    			int old = puzzle[r][c];
-   			if (old!=0){
+   			if (old!=0){ //chooses a random number in the puzzle and removes it from a temporary grid to check if the puzzle is still solvable
    				int[][] temp = new int[9][9];
    				for (int row =0; row < 9; row++){
 					for (int col =0; col < 9; col++){
@@ -59,13 +62,14 @@ public class solveSudoku{
 					}
 				}
 				temp[r][c]=0;
-				if (solve(temp)){
+				if (solve(temp)){ //if temp is solvable make change to the actual puzzle
 					puzzle[r][c]=0;
 				}
    			}
    		}
    	}
-   	public void addRandom(){
+   	//adds a random number to each row
+   	public void addRandom(){ 
    		for(int i =0;i<9;i++){
    			int c = randgen.nextInt(9);
    			int num = randgen.nextInt(9);
@@ -74,6 +78,7 @@ public class solveSudoku{
    			}
    		}
    	}
+   	// counts how many numbers are filled in on the int[][]
    	public int countNums(int[][] grid){
    		int ans=0;
    		for(int r=0;r<9;r++){
@@ -103,6 +108,7 @@ public class solveSudoku{
 	}
 	return true;
     }
+    // checks if a number is allowed to be put in the certain box
     public boolean boxSafe(int[][] grid,int row, int col, int num){
 	int startRow = row/3*3;
 	int startCol = col/3*3;
@@ -115,9 +121,11 @@ public class solveSudoku{
 	}
 	return true;
     }
+    // checks if it is safe to put a number
     public boolean isSafe(int[][]grid,int row, int col, int num){
 	return rowsafe(grid,row,num)&&colsafe(grid,col,num)&&boxSafe(grid,row, col, num);
     }
+    //finds the row number of the next empty cell
     public int nextRow(int[][] grid){
 	for(int r=0;r<9;r++){
 	    for (int c=0; c<9; c++){
@@ -128,6 +136,7 @@ public class solveSudoku{
 	}
 	return -1;
     }
+    //finds the col number of the next empty cell
     public int nextCol(int[][] grid){
 	for(int r=0;r<9;r++){
 	    for (int c=0; c<9; c++){
@@ -138,6 +147,7 @@ public class solveSudoku{
 	}
 	return -1;
     }
+    // checks if the int[][] completely filled in
     public boolean full(int[][] grid){
     	for (int r = 0; r<9; r++){
     		for (int c = 0; c<9; c++){
@@ -148,31 +158,26 @@ public class solveSudoku{
     	}
     	return true;
     }
+    //solves the int[][] to create a filled in solution
     public boolean solve(int[][] grid){
-    	if (full(grid)){
+    	if (full(grid)){ //checks if full
 	    	return true;
 		}
-		int row=-1;
-		int col=-1;
-		for (int i = 0; i < 9; i++){
-	    	for (int ii = 0; ii < 9; ii++){
-				if (grid[i][ii] == 0){
-		    		row =i;
-		    		col=ii;
-				}
-	    	}
-		}
-	    for (int num = 1; num <= 9; num++){
+		int row=nextRow(grid);   //finds next empty cell
+		int col=nextCol(grid);
+		//puts a number in the empty cell and repeats till it either finishes or reaches a point where no number can be put in
+	    for (int num = 1; num <= 9; num++){   
 			if (isSafe(grid,row, col, num)){
 	    		grid[row][col] = num;
 	    		if (solve(grid)){
 					return true;
 	    		}
-	    		grid[row][col]=0;
+	    		grid[row][col]=0; // if it doesn't work reverse the changes
 			}
     	}
-    	return false;
+    	return false; 
 	}
+	// returns a copy of the puzzle
 	public String[][] getPuzzle(){
 		String[][] ans = new String[9][9];
 		for (int row =0; row < 9; row++){
@@ -182,6 +187,7 @@ public class solveSudoku{
 		}
 		return ans;
 	}
+	//returns a copy of the solution
 	public String[][] getSolution(){
 		String[][] ans = new String[9][9];
 		for (int row =0; row < 9; row++){
@@ -193,9 +199,5 @@ public class solveSudoku{
 	}
 	public String toString() {
       return Arrays.deepToString(puzzle);
-   }
-   public static void main(String[] args) {
-   	solveSudoku a =new solveSudoku("Easy");
-   	System.out.println(Arrays.deepToString(a.getPuzzle()));
    }
 }
