@@ -290,16 +290,16 @@ public class puzzleGUI extends JFrame implements ActionListener{
     }
     return true;
   }
+  //checks if the puzzle is all filled in
   public boolean full(){
-    boolean ans = true;
     for (int row=0;row<9;row++){
       for (int col=0;col<9;col++){
         if (puzzle[row][col].getText().equals("")){
-          ans=false;
+          return false;
         }
       }
     }
-    return ans;
+    return true;
   }
    //sets the value of an empty box to the right number
   public boolean hint(){
