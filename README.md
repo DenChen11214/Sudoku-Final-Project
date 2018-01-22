@@ -6,6 +6,9 @@ Usage:
 2. Once the window pops up, choose the difficulty and enter an integer for the seed if you want
 3. Press the play button
 
+How to Play:
+The goal of the puzzle is to fill in all the numbers so that each row, column, and box has the numbers 1-9 with no repeats.
+
 Milestones:
 * Making the menu gui have the comboBox and play button
 * Make the puzzle Gui with 81 textFields as a grid
