@@ -6,6 +6,14 @@ Usage:
 2. Once the window pops up, choose the difficulty and enter an integer for the seed if you want
 3. Press the play button
 
+Buttons:
+1. Play - creates the puzzle gui
+2. Check - tells the user whether or not the board is the same as the solution
+3. Hint - fills in one of the empty cells with the correct corresponding number
+4. Solution - displays the solution onto the grid
+5. Back to Menu - brings back the menu and hides the puzzle
+6. Reset - clears the whole board except for the initial puzzle
+
 How to Play:
 The goal of the puzzle is to fill in all the numbers so that each row, column, and box has the numbers 1-9 with no repeats.
 
